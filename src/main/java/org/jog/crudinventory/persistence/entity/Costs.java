@@ -1,5 +1,6 @@
 package org.jog.crudinventory.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +24,7 @@ public class Costs {
 
     private BigDecimal transportationCost;
 
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     private LocalDateTime costTimeStamp;
 
 

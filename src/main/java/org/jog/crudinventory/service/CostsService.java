@@ -1,8 +1,7 @@
 package org.jog.crudinventory.service;
 
-import org.jog.crudinventory.dto.ProductDTO;
+import org.jog.crudinventory.dto.CostDTO;
 import org.jog.crudinventory.persistence.entity.Costs;
-import org.jog.crudinventory.persistence.entity.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -15,8 +14,8 @@ public interface CostsService {
 
     Optional<Costs> findById(Integer costId);
 
-    Product createOne(Costs costs);
+    Costs createOne(CostDTO costDTO);
 
-    Product updateOne(Integer costId, Costs costs);
+    Costs updateOne(Integer costId, CostDTO costDTO);
 
 }

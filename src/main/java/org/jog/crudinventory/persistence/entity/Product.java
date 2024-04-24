@@ -15,9 +15,13 @@ public class Product {
 
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @Enumerated(EnumType.STRING)
     private ProductStatus status;
+
 
 
 

@@ -11,11 +11,11 @@ public interface ProductService {
 
     Page<Product> findAll(Pageable pageable);
 
-    Optional<Product> findById(Long productId);
+    Optional<Product> findById(Integer productId);
 
     Product createOne(ProductDTO productDTO);
 
-    Product updateOne(Long productId, ProductDTO productDTO);
+    Product updateOne(Integer productId, ProductDTO productDTO);
 
-    Product disableOne(Long productId);
+    Product disableOne(Integer productId);
 }
