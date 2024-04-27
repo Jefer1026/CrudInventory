@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,11 +17,11 @@ public class PriceHistory {
 
     private LocalDateTime priceHistoryTimeStamp;
 
-    @Column(columnDefinition = "DECIMAL(10,4)")
-    private BigDecimal priceHistoryPreviousValue;
+    @Column(columnDefinition = "DECIMAL(10,1)")
+    private double priceHistoryPreviousValue;
 
-    @Column(columnDefinition = "DECIMAL(10,4)")
-    private BigDecimal priceHistoryLaterValue;
+    @Column(columnDefinition = "DECIMAL(10,1)")
+    private double priceHistoryLaterValue;
 
     @ManyToOne
     @JoinColumn(name = "prices_id")

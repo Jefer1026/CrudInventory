@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -16,12 +15,11 @@ public class CostDTO implements Serializable {
 
     private int productId;
 
-    private BigDecimal cost;
+    private double cost;
 
-    private BigDecimal transportationCost;
+    private double transportationCost;
 
-    private BigDecimal costIva;
-
+    private double costIva;
 
 
 }

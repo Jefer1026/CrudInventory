@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,11 +16,11 @@ public class Costs {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer costId;
 
-    private BigDecimal cost;
+    private double cost;
 
-    private BigDecimal costIva;
+    private double costIva;
 
-    private BigDecimal transportationCost;
+    private double transportationCost;
 
     @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     private LocalDateTime costTimeStamp;

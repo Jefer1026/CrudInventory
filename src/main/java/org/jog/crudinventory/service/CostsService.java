@@ -18,4 +18,6 @@ public interface CostsService {
 
     Costs updateOne(Integer costId, CostDTO costDTO);
 
+    Costs findByProductName(String productName);
+
 }

@@ -46,4 +46,9 @@ public class CostController {
         return ResponseEntity.ok(costsService.updateOne(costId, costDTO));
     }
 
+    @GetMapping("/search/{productName}")
+    public ResponseEntity<Costs> findByProductName(@PathVariable String productName) {
+        return ResponseEntity.ok(costsService.findByProductName(productName));
+    }
+
 }

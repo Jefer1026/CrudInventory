@@ -81,4 +81,9 @@ public class CostsServiceImpl implements CostsService {
 
         return costsRepository.save(costsFromDB);
     }
+
+    @Override
+    public Costs findByProductName(String productName) {
+        return costsRepository.findCostsByProduct(productName);
+    }
 }

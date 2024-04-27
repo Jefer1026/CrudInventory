@@ -15,8 +15,8 @@ public class Prices {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer pricesId;
 
-    @Column(columnDefinition = "DECIMAL(5,2)")
-    private BigDecimal price;
+    @Column(columnDefinition = "DECIMAL(10,1)")
+    private double price;
 
     @ManyToOne
     @JoinColumn(name = "product_id")

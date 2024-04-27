@@ -52,6 +52,8 @@ public class ProductServiceImpl implements ProductService {
         category.setCategoryId(productDTO.getCategoryId());
         productFromDB.setCategory(category);
 
+
+
         return productRepository.save(productFromDB);
     }
 
