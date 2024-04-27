@@ -48,7 +48,9 @@ public class CostController {
 
     @GetMapping("/search/{productName}")
     public ResponseEntity<Costs> findByProductName(@PathVariable String productName) {
-        return ResponseEntity.ok(costsService.findByProductName(productName));
+        return costsService.findByProductName(productName)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
 }

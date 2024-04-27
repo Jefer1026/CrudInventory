@@ -83,7 +83,7 @@ public class CostsServiceImpl implements CostsService {
     }
 
     @Override
-    public Costs findByProductName(String productName) {
+    public Optional<Costs> findByProductName(String productName) {
         return costsRepository.findCostsByProduct(productName);
     }
 }
