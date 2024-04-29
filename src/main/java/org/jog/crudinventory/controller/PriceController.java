@@ -35,6 +35,13 @@ public class PriceController {
                 .orElseGet((() -> ResponseEntity.notFound().build()));
     }
 
+    @GetMapping("/search/{productName}")
+    public ResponseEntity<Prices> findByProductName(@PathVariable String productName) {
+        return pricesService.findPricesByName(productName)
+                .map(ResponseEntity::ok)
+                .orElseGet((() -> ResponseEntity.notFound().build()));
+    }
+
     @PostMapping
     public ResponseEntity<Prices> createOne(@RequestBody PricesDTO pricesDTO) {
 

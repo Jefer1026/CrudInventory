@@ -1,7 +1,6 @@
 package org.jog.crudinventory.persistence.repository;
 
 import org.jog.crudinventory.persistence.entity.Costs;
-import org.jog.crudinventory.persistence.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

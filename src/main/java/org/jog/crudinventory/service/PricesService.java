@@ -17,4 +17,6 @@ public interface PricesService {
     Prices createOne(PricesDTO pricesDTO);
 
     Prices updateOne(Integer pricesId, PricesDTO pricesDTO);
+
+    Optional<Prices> findPricesByName(String name);
 }

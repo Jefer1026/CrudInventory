@@ -67,4 +67,10 @@ public class PriceServiceImpl implements PricesService {
 
         return pricesRepository.save(pricesFromDB);
     }
+
+    @Override
+    public Optional<Prices> findPricesByName(String name) {
+
+        return pricesRepository.findPricesByName(name);
+    }
 }
