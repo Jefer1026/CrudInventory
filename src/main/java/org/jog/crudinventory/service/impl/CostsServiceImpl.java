@@ -3,6 +3,7 @@ package org.jog.crudinventory.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.jog.crudinventory.dto.CostDTO;
 import org.jog.crudinventory.exception.ObjectNofFoundException;
+import org.jog.crudinventory.exception.ObjectRepeatedException;
 import org.jog.crudinventory.persistence.entity.CostHistory;
 import org.jog.crudinventory.persistence.entity.Costs;
 import org.jog.crudinventory.persistence.entity.Product;
@@ -36,19 +37,15 @@ public class CostsServiceImpl implements CostsService {
     @Override
     public Costs createOne(CostDTO costDTO) {
 
-        Costs costs = new Costs();
+        if (ifExist(costDTO)) {
+            throw new ObjectRepeatedException("Costs has already been created with this product");
+        } else {
+            Costs costs = new Costs();
 
-        costs.setCost(costDTO.getCost());
-        costs.setCostIva(costDTO.getCostIva());
-        costs.setTransportationCost(costDTO.getTransportationCost());
-        costs.setCostTimeStamp(LocalDateTime.now());
+            return getCosts(costDTO, costs);
+        }
 
-        Product product = new Product();
-        product.setProductId(costDTO.getProductId());
 
-        costs.setProduct(product);
-
-        return costsRepository.save(costs);
     }
 
     @Override
@@ -64,26 +61,62 @@ public class CostsServiceImpl implements CostsService {
         costHistory.setCostHistoryLaterValue(costDTO.getCost());
         costHistory.setCostHistoryTimeStamp(LocalDateTime.now());
         costHistory.setCosts(costsFromDB);
+
         costHistoryRepository.save(costHistory);
 
-        costsFromDB.setCost(costDTO.getCost());
-        costsFromDB.setCostIva(costDTO.getCostIva());
-        costsFromDB.setTransportationCost(costDTO.getTransportationCost());
-        costsFromDB.setCostTimeStamp(LocalDateTime.now());
+        return getCosts(costDTO, costsFromDB);
+    }
 
 
-        Product product = new Product();
-        product.setProductId(costDTO.getProductId());
-        costsFromDB.setProduct(product);
+    @Override
+    public Costs UpdateByProductName(String productName, CostDTO costDTO) {
 
 
+        Costs costProductName = costsRepository.findCostsByProduct(productName)
+                .orElseThrow(() -> new ObjectNofFoundException("Product not found"));
+        costProductName.setCostIva(costDTO.getCost() * (costDTO.getCostIva() / 100));
+        costProductName.setCost(costDTO.getCost() + costProductName.getCostIva());
+        costProductName.setTransportationCost(costDTO.getTransportationCost());
+        costProductName.setCostTimeStamp(LocalDateTime.now());
 
 
-        return costsRepository.save(costsFromDB);
+        CostHistory costHistory = new CostHistory();
+
+        costHistory.setCostHistoryField(costProductName.getProduct().getProductId());
+        costHistory.setCostHistoryPreviousValue(costProductName.getCost());
+        costHistory.setCostHistoryLaterValue(costDTO.getCost());
+        costHistory.setCostHistoryTimeStamp(LocalDateTime.now());
+        costHistory.setCosts(costProductName);
+
+        costHistoryRepository.save(costHistory);
+
+
+        return costsRepository.save(costProductName);
+
     }
 
     @Override
     public Optional<Costs> findByProductName(String productName) {
         return costsRepository.findCostsByProduct(productName);
+    }
+
+    private Costs getCosts(CostDTO costDTO, Costs costs) {
+
+        costs.setCostIva(costDTO.getCost() * (costDTO.getCostIva() / 100));
+        costs.setCost(costDTO.getCost() + costs.getCostIva());
+        costs.setTransportationCost(costDTO.getTransportationCost());
+        costs.setCostTimeStamp(LocalDateTime.now());
+
+        Product product = new Product();
+        product.setProductId(costDTO.getProductId());
+
+        costs.setProduct(product);
+
+        return costsRepository.save(costs);
+    }
+
+    private boolean ifExist(CostDTO costDTO) {
+
+        return costsRepository.findAll().stream().anyMatch(costs -> costs.getProduct().getProductId().equals(costDTO.getProductId()));
     }
 }

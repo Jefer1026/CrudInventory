@@ -22,6 +22,11 @@ public class CostHistoryServiceImpl implements CostHistoryService {
     }
 
     @Override
+    public Page<CostHistory> findByProductName(Pageable pageable, String productName) {
+        return costHistoryRepository.findByProductName(pageable, productName);
+    }
+
+    @Override
     public Optional<CostHistory> findById(int id) {
         return costHistoryRepository.findById(id);
     }

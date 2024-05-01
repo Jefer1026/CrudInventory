@@ -28,6 +28,14 @@ public class CostHistoryController {
                 : ResponseEntity.notFound().build();
     }
 
+    @GetMapping("search/{productName}")
+    public ResponseEntity<Page<CostHistory>> findByProductName(@PathVariable String productName, Pageable pageable) {
+        Page<CostHistory> costHistoryPageProduct = costHistoryService.findByProductName(pageable, productName);
+        return costHistoryPageProduct.hasContent()
+                ? ResponseEntity.ok(costHistoryPageProduct)
+                : ResponseEntity.notFound().build();
+    }
+
     @GetMapping("/{costHistoryId}")
     public ResponseEntity<CostHistory> findById(@PathVariable Integer costHistoryId) {
 

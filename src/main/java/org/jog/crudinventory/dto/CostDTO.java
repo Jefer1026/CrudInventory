@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class CostDTO implements Serializable {
+public class CostDTO implements Serializable{
 
     @Serial
     private static final long serialVersionUID = -4966791027693723276L;
@@ -20,6 +20,5 @@ public class CostDTO implements Serializable {
     private double transportationCost;
 
     private double costIva;
-
 
 }

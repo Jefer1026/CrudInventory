@@ -54,5 +54,10 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.disableOne(categoryId));
     }
 
+    @PutMapping("/{categoryId}/enabled")
+    public ResponseEntity<Category> enable(@PathVariable Integer categoryId) {
+        return ResponseEntity.ok(categoryService.enableOne(categoryId));
+    }
+
 
 }

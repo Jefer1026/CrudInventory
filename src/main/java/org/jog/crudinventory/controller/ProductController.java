@@ -52,4 +52,9 @@ public class ProductController {
     public ResponseEntity<Product> disableProduct(@PathVariable Integer productId) {
         return ResponseEntity.ok(productService.disableOne(productId));
     }
+
+    @PutMapping("/{productId}/enabled")
+    public ResponseEntity<Product> enableProduct(@PathVariable Integer productId) {
+        return ResponseEntity.ok(productService.enableOne(productId));
+    }
 }

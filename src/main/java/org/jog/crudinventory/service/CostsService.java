@@ -20,4 +20,6 @@ public interface CostsService {
 
     Optional<Costs> findByProductName(String productName);
 
+    Costs UpdateByProductName(String productName, CostDTO costDTO);
+
 }

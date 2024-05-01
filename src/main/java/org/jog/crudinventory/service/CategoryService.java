@@ -18,4 +18,6 @@ public interface CategoryService {
     Category updateOne(Integer categoryId, CategoryDTO categoryDTO);
 
     Category disableOne(Integer categoryId);
+
+    Category enableOne(Integer categoryId);
 }

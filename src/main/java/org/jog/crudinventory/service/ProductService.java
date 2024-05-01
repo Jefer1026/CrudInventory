@@ -18,4 +18,6 @@ public interface ProductService {
     Product updateOne(Integer productId, ProductDTO productDTO);
 
     Product disableOne(Integer productId);
+
+    Product enableOne(Integer productId);
 }

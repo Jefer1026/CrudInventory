@@ -36,9 +36,21 @@ public class CostController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/search/{productName}")
+    public ResponseEntity<Costs> findByProductName(@PathVariable String productName) {
+        return costsService.findByProductName(productName)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @PostMapping
     public ResponseEntity<Costs> save(@RequestBody CostDTO costDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(costsService.createOne(costDTO));
+    }
+
+    @PutMapping("/update/{productName}")
+    public ResponseEntity<Costs> updateByProductName(@PathVariable String productName, @RequestBody CostDTO costDTO) {
+        return ResponseEntity.ok(costsService.UpdateByProductName(productName, costDTO));
     }
 
     @PutMapping("{costId}")
@@ -46,11 +58,5 @@ public class CostController {
         return ResponseEntity.ok(costsService.updateOne(costId, costDTO));
     }
 
-    @GetMapping("/search/{productName}")
-    public ResponseEntity<Costs> findByProductName(@PathVariable String productName) {
-        return costsService.findByProductName(productName)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
 
 }
