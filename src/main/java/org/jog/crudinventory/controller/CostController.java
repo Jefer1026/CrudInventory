@@ -28,6 +28,12 @@ public class CostController {
                 ? ResponseEntity.ok(costsPage)
                 : ResponseEntity.notFound().build();
     }
+    @GetMapping("/search/{productName}")
+    public ResponseEntity<Costs> findByProductName(@PathVariable String productName) {
+        return costsService.findByProductName(productName)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
     @GetMapping("/{costId}")
     public ResponseEntity<Costs> findById(@PathVariable Integer costId) {
@@ -36,12 +42,7 @@ public class CostController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/search/{productName}")
-    public ResponseEntity<Costs> findByProductName(@PathVariable String productName) {
-        return costsService.findByProductName(productName)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
+
 
     @PostMapping
     public ResponseEntity<Costs> save(@RequestBody CostDTO costDTO) {

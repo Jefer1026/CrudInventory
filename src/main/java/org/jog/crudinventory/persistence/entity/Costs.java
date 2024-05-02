@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -14,6 +15,7 @@ public class Costs {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cost_id")
     private Integer costId;
 
     private double cost;
@@ -29,4 +31,5 @@ public class Costs {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+
 }

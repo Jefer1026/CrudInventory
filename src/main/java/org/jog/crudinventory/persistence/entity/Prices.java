@@ -4,15 +4,15 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-
 @Entity
 @Getter
 @Setter
+@Table(name = "prices")
 public class Prices {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "prices_id")
     private Integer pricesId;
 
     @Column(columnDefinition = "DECIMAL(10,1)")

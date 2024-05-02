@@ -24,7 +24,7 @@ public class PriceHistory {
     private double priceHistoryLaterValue;
 
     @ManyToOne
-    @JoinColumn(name = "prices_id")
+    @JoinColumn(referencedColumnName = "prices_id")
     private Prices prices;
 
 }

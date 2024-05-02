@@ -10,9 +10,9 @@ public interface PriceHistoryService {
 
     Page<PriceHistory> findAll(Pageable pageable);
 
-    Optional<PriceHistory> findById(Integer priceHistoryId);
-
     Page<PriceHistory> findByProductName(Pageable pageable,String productName);
+
+    Optional<PriceHistory> findById(Integer priceHistoryId);
 
     PriceHistory save(PriceHistory priceHistory);
 

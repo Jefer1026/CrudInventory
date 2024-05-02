@@ -31,7 +31,7 @@ public class CostHistory {
 
 
     @ManyToOne
-    @JoinColumn(name = "costs_id")
+    @JoinColumn(referencedColumnName = "cost_id")
     private Costs costs;
 
 
