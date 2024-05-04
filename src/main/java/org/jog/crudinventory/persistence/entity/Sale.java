@@ -27,6 +27,6 @@ public class Sale {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "sale")
-    List<SaleDetails> listSaleDetails;
+    @OneToMany(mappedBy = "sale",fetch = FetchType.EAGER)
+    private List<SaleDetails> listSaleDetails;
 }
