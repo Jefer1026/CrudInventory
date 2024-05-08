@@ -17,7 +17,7 @@ public class CostHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer costHistoryId;
 
-    @JsonFormat(pattern = "yyyy/MMM/dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     private LocalDateTime costHistoryTimeStamp;
 
     @Column(columnDefinition = "TINYINT(1)")

@@ -1,5 +1,7 @@
 package org.jog.crudinventory.dto;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,8 +17,10 @@ public class ProductDTO implements Serializable {
 
     private Integer id;
 
+    @NotBlank
     private String name;
 
+    @Min(value = 1)
     private Integer categoryId;
 
 }

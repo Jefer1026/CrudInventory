@@ -1,5 +1,6 @@
 package org.jog.crudinventory.dto;
 
+import jakarta.validation.constraints.DecimalMin;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,8 +16,10 @@ public class CostDTO implements Serializable{
 
     private int productId;
 
+    @DecimalMin(value = "0.01")
     private double cost;
 
+    @DecimalMin(value = "0.01")
     private double transportationCost;
 
     private double costIva;
